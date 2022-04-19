@@ -60,4 +60,34 @@ const stateConversion = {
   Wyoming: "WY"
 };
 
-export { stateConversion };
+const convertDir = function (dir) {
+  let output;
+  if ((dir >= 337.5 && dir <= 360) || (dir >= 0 && dir < 22.5)) output = "N";
+  if (dir >= 22.5 && dir < 67.5) output = "NE";
+  if (dir >= 67.5 && dir < 112.5) output = "E";
+  if (dir >= 112.5 && dir < 157.5) output = "SE";
+  if (dir >= 157.5 && dir < 202.5) output = "S";
+  if (dir >= 202.5 && dir < 247.5) output = "SW";
+  if (dir >= 247.5 && dir < 292.5) output = "W";
+  if (dir >= 292.5 && dir < 337.5) output = "NW";
+  return output;
+};
+
+const convertUTC = function (utc, format) {
+  if (format === "time") {
+    return new Date(utc * 1000).toLocaleString(navigator.language, {
+      hour: "numeric",
+      minute: "2-digit"
+    });
+  } else if (format === "day") {
+    return new Date(utc * 1000).toLocaleString(navigator.language, {
+      [format]: "2-digit"
+    });
+  } else {
+    return new Date(utc * 1000).toLocaleString(navigator.language, {
+      [format]: "short"
+    });
+  }
+};
+
+export { stateConversion, convertDir, convertUTC };
