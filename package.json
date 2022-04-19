@@ -1,0 +1,30 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Application for local and global weather.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessejputnam/weather-app.git"
+  },
+  "keywords": [],
+  "author": "Jesse Putnam",
+  "license": "ISC",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/jessejputnam/weather-app/issues"
+  },
+  "homepage": "https://github.com/jessejputnam/weather-app#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.4",
+    "eslint": "^8.13.0",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
