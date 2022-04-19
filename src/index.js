@@ -1,4 +1,6 @@
-"use strict";
+import { stateConversion } from "./stateConversion";
+
+("use strict");
 
 const testBtn = document.querySelector("#test-btn");
 
@@ -17,17 +19,37 @@ const getCoords = async function () {
   return { lat, long };
 };
 
-const getWeatherData = async function () {
-  const coords = await getCoords();
-  const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&appid=e1c7899ad76e2db415e336ec95e711cd`
+const getLocationData = async function (coords) {
+  const resLocation = await fetch(
+    `http://api.openweathermap.org/geo/1.0/reverse?lat=${coords.lat}&lon=${coords.long}&appid=e1c7899ad76e2db415e336ec95e711cd`
   );
-  const data = await response.json();
-  //! has weather, now need promise.all() for api of city name as well
-  console.log(data);
+
+  const [dataLocation] = await resLocation.json();
+  return dataLocation;
 };
 
-getWeatherData();
+const getWeatherData = async function (coords) {
+  const resWeather = await fetch(
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&appid=e1c7899ad76e2db415e336ec95e711cd`
+  );
+  return await resWeather.json();
+};
+
+const collateData = async function () {
+  const coords = await getCoords();
+  const dataLocation = await getLocationData(coords);
+  const dataWeather = await getWeatherData(coords);
+
+  console.log(dataLocation);
+  console.log(
+    dataLocation.name,
+    stateConversion[dataLocation.state],
+    dataLocation.country
+  );
+  console.log(dataWeather);
+};
+
+collateData();
 
 testBtn.addEventListener("click", async () => {
   console.log(await getCoords());
