@@ -90,4 +90,48 @@ const convertUTC = function (utc, format) {
   }
 };
 
-export { stateConversion, convertDir, convertUTC };
+const convertIconID = function (id) {
+  // Thunderstorm
+  if (id >= 200 && id < 300) return "11d";
+
+  // Drizzle
+  if (id >= 300 && id < 400) return "09d";
+
+  // Rain
+  if (id >= 500 && id < 505) return "10d";
+  if (id === 511) return "13d";
+  if (id >= 520 && id < 600) return "09d";
+
+  // Snow
+  if (id >= 600 && id < 700) return "13d";
+
+  // Atmosphere
+  if (id >= 700 && id < 800) return "50d";
+
+  // Clear
+  if (id === 800) return "01d";
+
+  // Clouds
+  if (id === 801) return "02d";
+  if (id === 802) return "03d";
+  if (id === 803 || id === 804) return "04d";
+};
+
+const convertTempUnits = function (temp, unit) {
+  if (unit === "metric") return (temp - 32) * (5 / 9);
+  if (unit === "imperial") return temp * 1.8 + 32;
+};
+
+const convertSpdUnits = function (spd, unit) {
+  if (unit === "metric") return spd / 2.237;
+  if (unit === "imperial") return spd * 2.237;
+};
+
+export {
+  stateConversion,
+  convertDir,
+  convertUTC,
+  convertIconID,
+  convertSpdUnits,
+  convertTempUnits
+};
