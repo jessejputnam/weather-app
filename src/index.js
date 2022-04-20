@@ -88,7 +88,7 @@ const fillForecastedArr = async function (instance, units, type) {
     arr.push([instance.temp.max, units === "imperial" ? "℉" : "℃"]);
   if (type !== "hourly")
     arr.push([instance.temp.min, units === "imperial" ? "℉" : "℃"]);
-  arr.push(instance.pop);
+  arr.push(`${(instance.pop * 100).toFixed(0)}%`);
 
   return arr;
 };
@@ -180,44 +180,57 @@ convertBtn.addEventListener("click", async () => {
   // Copy data to manipulate
   const data = await finalData;
 
-  // If converting to metric
-  if (data.units !== "metric") {
-    // Change unit measurement
-    data.units = "metric";
+  // Change unit measurement
+  data.units = data.units === "metric" ? "imperial" : "metric";
 
-    // Change current feel
-    data.weather.current.feel = [
-      convertTempUnits(data.weather.current.feel[0], data.units),
-      "℃"
+  // Change current feel
+  data.weather.current.feel = [
+    convertTempUnits(data.weather.current.feel[0], data.units),
+    `${data.units === "metric" ? "℃" : "℉"}`
+  ];
+
+  // Change current temp
+  data.weather.current.temp = [
+    convertTempUnits(data.weather.current.temp[0], data.units),
+    `${data.units === "metric" ? "℃" : "℉"}`
+  ];
+
+  // Change windspeed
+  data.weather.current.windSpd = [
+    convertSpdUnits(data.weather.current.windSpd[0], data.units),
+    `${data.units === "metric" ? "m/s" : "mph"}`
+  ];
+
+  // Change daily temps
+  data.weather.daily.forEach((instance) => {
+    const tempMax = instance[4];
+    const tempMin = instance[5];
+    instance[4] = [
+      convertTempUnits(tempMax[0], data.units),
+      `${data.units === "metric" ? "℃" : "℉"}`
     ];
-    // Change current temp
-    data.weather.current.temp = [
-      convertTempUnits(data.weather.current.temp[0], data.units),
-      "℃"
+    instance[5] = [
+      convertTempUnits(tempMin[0], data.units),
+      `${data.units === "metric" ? "℃" : "℉"}`
     ];
+  });
 
-    // Change daily temps
-    data.weather.daily.forEach((instance) => {
-      const tempMax = instance[4];
-      const tempMin = instance[5];
-      instance[4] = [convertTempUnits(tempMax[0], data.units), "℃"];
-      instance[5] = [convertTempUnits(tempMin[0], data.units), "℃"];
-    });
+  // Change hourly temps
+  data.weather.hourly.forEach((instance) => {
+    const tempReal = instance[4];
+    const tempFeel = instance[5];
+    instance[4] = [
+      convertTempUnits(tempReal[0], data.units),
+      `${data.units === "metric" ? "℃" : "℉"}`
+    ];
+    instance[5] = [
+      convertTempUnits(tempFeel[0], data.units),
+      `${data.units === "metric" ? "℃" : "℉"}`
+    ];
+  });
 
-    // Change hourly temps
-    data.weather.hourly.forEach((instance) => {
-      const tempReal = instance[4];
-      const tempFeel = instance[5];
-      instance[4] = [convertTempUnits(tempReal[0], data.units), "℃"];
-      instance[5] = [convertTempUnits(tempFeel[0], data.units), "℃"];
-    });
-  }
-
-  // Save converted data
+  // Replace unconverted data
   finalData = data;
 });
 
 let finalData;
-
-// ℃
-// ℉
