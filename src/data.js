@@ -2,6 +2,7 @@
 
 import {
   stateConversion,
+  countryConversion,
   convertDir,
   convertUTC,
   convertIconID,
@@ -10,7 +11,7 @@ import {
 } from "./conversions";
 
 // Get Coordinates from browser location
-const getCoords = async function () {
+const getCoordsLocal = async function () {
   try {
     const getCurrentPosition = function () {
       return new Promise((resolve, reject) => {
@@ -24,6 +25,33 @@ const getCoords = async function () {
     const position = await getCurrentPosition();
     const { latitude: lat, longitude: long } = position.coords;
     return { lat, long };
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Get location from search
+const getCoordsSearch = async function (search) {
+  try {
+    const searchArr = search.split(",");
+    if (searchArr.length > 2) throw new Error("Incorrect search format");
+
+    // const
+    console.log(searchArr);
+
+    // if searchArr[1].length > 2;
+
+    //! WORKING ON SEARCH FUNCTIONALITY
+    let city = "paris";
+    let state = "";
+    let country = "us";
+    const resSearch = await fetch(
+      `http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&appid=e1c7899ad76e2db415e336ec95e711cd`
+    );
+    const [dataSearchLocation] = await resSearch.json();
+    if (dataSearchLocation === undefined)
+      throw new Error("Could not find city");
+    console.log(await dataSearchLocation);
   } catch (err) {
     console.error(err);
   }
@@ -90,9 +118,9 @@ const fillForecastedArr = async function (instance, units, type) {
 };
 
 // Collect data together
-const collateData = async function () {
+const collateData = async function (input) {
   try {
-    const coords = await getCoords();
+    const coords = await getCoordsLocal(input);
     const dataLocation = await getLocationData(coords);
     const dataWeather = await getWeatherData(coords);
 
@@ -215,4 +243,4 @@ const convertData = async function (activeData) {
   activeData = data;
 };
 
-export { collateData, convertData };
+export { collateData, convertData, getCoordsSearch };
