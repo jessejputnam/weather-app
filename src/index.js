@@ -10,7 +10,7 @@ const testTextBtn = document.querySelector("#test-txt-btn");
 // ################### APP FLOW #######################
 
 testBtn.addEventListener("click", async () => {
-  activeData = await collateData();
+  activeData = await collateData(null);
 });
 testbtn2.addEventListener("click", () => {
   console.log(activeData);

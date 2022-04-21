@@ -10,6 +10,18 @@ import {
   convertTempUnits
 } from "./conversions";
 
+/**
+ * TABLE OF CONTENTS
+ * ** COORDINATE FUNCTIONS
+ * ** WEATHER API FUNCTIONS
+ * ** META/COLLATING FUNCTIONS
+ * ** CONVERSION FUNCTIONS
+ */
+
+// ###########################################################
+// ** LOCATION FUNCTIONS
+// ###########################################################
+
 // Get Coordinates from browser location
 const getCoordsLocal = async function () {
   try {
@@ -33,25 +45,69 @@ const getCoordsLocal = async function () {
 // Get location from search
 const getCoordsSearch = async function (search) {
   try {
-    const searchArr = search.split(",");
-    if (searchArr.length > 2) throw new Error("Incorrect search format");
-
-    // const
-    console.log(searchArr);
-
-    // if searchArr[1].length > 2;
-
-    //! WORKING ON SEARCH FUNCTIONALITY
-    let city = "paris";
+    let city = "";
     let state = "";
-    let country = "us";
+    let country = "";
+
+    // ############# SEARCH RULES #############
+    // Get search and look for errors
+    const searchArr = search
+      .split(",")
+      .map((item) => item.trim().toLowerCase());
+
+    // ############ ASSIGN SEARCH #############
+    // Assign city
+    city = searchArr[0];
+
+    // If only city then search, else...
+    if (searchArr.length !== 1) {
+      if (searchArr.length > 2)
+        throw new Error("Search must be 'city, state' or 'city, country'");
+      if (searchArr[1].length < 2)
+        throw new Error("Incorrect format for state/country");
+
+      // Assign country/state
+      if (searchArr[1].length === 2) {
+        // If state/country input is 2-digit code
+        if (Object.values(stateConversion).includes(searchArr[1])) {
+          // If US state
+          state = searchArr[1];
+          country = "us";
+        } else {
+          // If not US state
+          state = "";
+          country = searchArr[1];
+        }
+      } else {
+        // If state/country input is full name
+        if (Object.keys(stateConversion).includes(searchArr[1])) {
+          // If US State
+          state = searchArr[1];
+          country = "us";
+        } else {
+          // If not US state
+          if (Object.values(countryConversion).includes(searchArr[1])) {
+            const countryCode = Object.entries(countryConversion).filter(
+              (entry) => entry[1] === searchArr[1]
+            )[0][0];
+            state = "";
+            country = countryCode;
+          } else {
+            throw new Error("Could not find country");
+          }
+        }
+      }
+    }
+
+    // ############# GET SEARCH #############
     const resSearch = await fetch(
       `http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&appid=e1c7899ad76e2db415e336ec95e711cd`
     );
     const [dataSearchLocation] = await resSearch.json();
     if (dataSearchLocation === undefined)
       throw new Error("Could not find city");
-    console.log(await dataSearchLocation);
+    const { lat: lat, lon: long } = await dataSearchLocation;
+    return lat, long;
   } catch (err) {
     console.error(err);
   }
@@ -70,6 +126,10 @@ const getLocationData = async function (coords) {
     console.error(err);
   }
 };
+
+// ###########################################################
+// ** WEATHER API FUNCTIONS
+// ###########################################################
 
 // Weather Data
 const getWeatherData = async function (coords) {
@@ -104,28 +164,34 @@ const fillForecastedArr = async function (instance, units, type) {
   arr.push(convertUTC(instance.dt, "time"));
   arr.push(instance.weather[0].main);
   arr.push(thisIcon);
-  if (type !== "daily")
+  if (type !== "daily") {
     arr.push([instance.temp, units === "imperial" ? "℉" : "℃"]);
-  if (type !== "daily")
     arr.push([instance.feels_like, units === "imperial" ? "℉" : "℃"]);
-  if (type !== "hourly")
+  }
+  if (type !== "hourly") {
     arr.push([instance.temp.max, units === "imperial" ? "℉" : "℃"]);
-  if (type !== "hourly")
     arr.push([instance.temp.min, units === "imperial" ? "℉" : "℃"]);
+  }
   arr.push(`${(instance.pop * 100).toFixed(0)}%`);
 
   return arr;
 };
 
+// ###########################################################
+// ** META/COLLATING FUNCTIONS
+// ###########################################################
+
 // Collect data together
 const collateData = async function (input) {
   try {
-    const coords = await getCoordsLocal(input);
+    const coords = await getCoordsLocal();
+    // const coords = input === null ? await getCoordsLocal() : await getCoordsSearch();
+
     const dataLocation = await getLocationData(coords);
     const dataWeather = await getWeatherData(coords);
 
-    const locationHourly = dataWeather.hourly;
-    const locationDaily = dataWeather.daily;
+    const locationHourly = await dataWeather.hourly;
+    const locationDaily = await dataWeather.daily;
 
     // Data Object
     const data = {
@@ -168,12 +234,12 @@ const collateData = async function (input) {
     };
 
     for (let instance of locationHourly)
-      fillForecastedArr(instance, data.units, "hourly").then((value) =>
+      await fillForecastedArr(instance, data.units, "hourly").then((value) =>
         data.weather.hourly.push(value)
       );
 
     for (let instance of locationDaily) {
-      fillForecastedArr(instance, data.units, "daily").then((value) =>
+      await fillForecastedArr(instance, data.units, "daily").then((value) =>
         data.weather.daily.push(value)
       );
     }
@@ -185,6 +251,20 @@ const collateData = async function (input) {
   }
 };
 
+// ###########################################################
+// ** CONVERSION FUNCTIONS
+// ###########################################################
+
+// Change Temp Units and symbols
+const changeTemp = function (temp, data) {
+  return [
+    convertTempUnits(temp[0], data.units),
+    `${data.units === "metric" ? "℃" : "℉"}`
+  ];
+};
+
+// const changeSpd = function
+
 // Convert data
 const convertData = async function (activeData) {
   // Copy data to manipulate
@@ -194,16 +274,10 @@ const convertData = async function (activeData) {
   data.units = data.units === "metric" ? "imperial" : "metric";
 
   // Change current feel
-  data.weather.current.feel = [
-    convertTempUnits(data.weather.current.feel[0], data.units),
-    `${data.units === "metric" ? "℃" : "℉"}`
-  ];
+  data.weather.current.feel = changeTemp(data.weather.current.feel, data);
 
   // Change current temp
-  data.weather.current.temp = [
-    convertTempUnits(data.weather.current.temp[0], data.units),
-    `${data.units === "metric" ? "℃" : "℉"}`
-  ];
+  data.weather.current.temp = changeTemp(data.weather.current.temp, data);
 
   // Change windspeed
   data.weather.current.windSpd = [
@@ -215,28 +289,16 @@ const convertData = async function (activeData) {
   data.weather.daily.forEach((instance) => {
     const tempMax = instance[4];
     const tempMin = instance[5];
-    instance[4] = [
-      convertTempUnits(tempMax[0], data.units),
-      `${data.units === "metric" ? "℃" : "℉"}`
-    ];
-    instance[5] = [
-      convertTempUnits(tempMin[0], data.units),
-      `${data.units === "metric" ? "℃" : "℉"}`
-    ];
+    instance[4] = changeTemp(tempMax, data);
+    instance[5] = changeTemp(tempMin, data);
   });
 
   // Change hourly temps
   data.weather.hourly.forEach((instance) => {
     const tempReal = instance[4];
     const tempFeel = instance[5];
-    instance[4] = [
-      convertTempUnits(tempReal[0], data.units),
-      `${data.units === "metric" ? "℃" : "℉"}`
-    ];
-    instance[5] = [
-      convertTempUnits(tempFeel[0], data.units),
-      `${data.units === "metric" ? "℃" : "℉"}`
-    ];
+    instance[4] = changeTemp(tempReal, data);
+    instance[5] = changeTemp(tempFeel, data);
   });
 
   // Replace unconverted data
