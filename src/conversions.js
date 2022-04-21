@@ -269,7 +269,7 @@ const countryConversion = {
   pk: "pakistan",
   pw: "palau",
   pa: "panama",
-  pg: "papua New Guinea",
+  pg: "papua new guinea",
   py: "paraguay",
   pe: "peru",
   ph: "philippines",
@@ -330,6 +330,15 @@ const countryConversion = {
   zw: "zimbabwe"
 };
 
+const capitalize = function (str) {
+  return str
+    .split(" ")
+    .map((word) => {
+      return word !== "and" ? word[0].toUpperCase() + word.slice(1) : word;
+    })
+    .join(" ");
+};
+
 export {
   stateConversion,
   countryConversion,
@@ -337,5 +346,6 @@ export {
   convertUTC,
   convertIconID,
   convertSpdUnits,
-  convertTempUnits
+  convertTempUnits,
+  capitalize
 };

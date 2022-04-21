@@ -1,6 +1,6 @@
 "use strict";
 
-import { collateData, convertData, getCoordsSearch } from "./data";
+import { collateData, convertData } from "./data";
 
 const testBtn = document.querySelector("#test-btn");
 const testbtn2 = document.querySelector("#test-btn2");
@@ -21,6 +21,6 @@ convertBtn.addEventListener("click", () => {
 
 let activeData;
 
-testTextBtn.addEventListener("click", () => {
-  getCoordsSearch(testText.value);
+testTextBtn.addEventListener("click", async () => {
+  activeData = await collateData(testText.value);
 });

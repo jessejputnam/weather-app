@@ -7,7 +7,8 @@ import {
   convertUTC,
   convertIconID,
   convertSpdUnits,
-  convertTempUnits
+  convertTempUnits,
+  capitalize
 } from "./conversions";
 
 /**
@@ -107,7 +108,7 @@ const getCoordsSearch = async function (search) {
     if (dataSearchLocation === undefined)
       throw new Error("Could not find city");
     const { lat: lat, lon: long } = await dataSearchLocation;
-    return lat, long;
+    return { lat, long };
   } catch (err) {
     console.error(err);
   }
@@ -121,6 +122,7 @@ const getLocationData = async function (coords) {
     );
 
     const [dataLocation] = await resLocation.json();
+    console.log(dataLocation);
     return dataLocation;
   } catch (err) {
     console.error(err);
@@ -184,8 +186,8 @@ const fillForecastedArr = async function (instance, units, type) {
 // Collect data together
 const collateData = async function (input) {
   try {
-    const coords = await getCoordsLocal();
-    // const coords = input === null ? await getCoordsLocal() : await getCoordsSearch();
+    const coords =
+      input === null ? await getCoordsLocal() : await getCoordsSearch(input);
 
     const dataLocation = await getLocationData(coords);
     const dataWeather = await getWeatherData(coords);
@@ -203,8 +205,8 @@ const collateData = async function (input) {
         city: dataLocation.name,
         state:
           dataLocation.country === "US"
-            ? stateConversion[dataLocation.state]
-            : dataLocation.country,
+            ? dataLocation.state
+            : capitalize(countryConversion[dataLocation.country.toLowerCase()]),
         month: convertUTC(dataWeather.current.dt, "month"),
         day: convertUTC(dataWeather.current.dt, "day"),
         weekday: convertUTC(dataWeather.current.dt, "weekday")
