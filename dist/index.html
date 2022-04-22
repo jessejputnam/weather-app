@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@200;400&family=Marcellus&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@200;400&family=Marcellus&family=Alegreya+Sans+SC:wght@300&display=swap"
       rel="stylesheet"
     />
 
@@ -16,29 +16,125 @@
     <link href="./css/styles.css" rel="stylesheet" />
 
     <script src="./main.js" defer></script>
+
+    <link rel="icon" type="image/x-icon" href="./images/thermometer-half.png" />
     <title>Weather or Not</title>
   </head>
 
   <body>
-    <header></header>
+    <header>
+      <form class="search__cntnr">
+        <input type="text" id="search-input" />
+        <input type="submit" value="🔍" id="search-submit" class="btn" />
+      </form>
+
+      <div class="btn convert__container">
+        <div id="convert--f" class="convert__opt">℉</div>
+        <div id="convert--c" class="convert__opt">℃</div>
+      </div>
+    </header>
+
     <main>
-      <div class="loading__container hidden--opacity hidden--z hidden--none">
-        <h1 class="loading__msg">Getting your local data...</h1>
+      <div class="loading__cntnr hidden--opacity hidden--z hidden--none">
+        <p class="loading__msg">Getting your local data...</p>
         <img src="./images/loading-spinner.gif" class="loading__spinner" />
       </div>
-      <!-- end loading__container -->
+      <!-- end loading__cntnr -->
 
-      <div class="main__container">
+      <div class="main__cntnr">
         <div class="slider">
-          <section id="section-local" class="section"></section>
-          <section id="section-hourly" class="section"></section>
-          <section id="section-daily" class="section"></section>
+          <div id="page-home" class="page">
+            <section class="cur__heading">
+              <div class="cur__heading__date__cntnr">
+                <p class="cur__heading__date--weekday txt--2">Fri</p>
+                <p class="cur__heading__date--day txt--3">Apr 22</p>
+              </div>
+              <div class="cur__heading__loc__cntnr">
+                <p class="cur__heading__loc--city txt--2">Alford</p>
+                <p class="cur__heading__loc--state txt--3">Massachusetts</p>
+              </div>
+            </section>
+            <!-- end home__heading -->
+
+            <section class="cur__weather__cntnr">
+              <div class="cur__weather">
+                <div class="cur__weather__temp txt--1">40℉</div>
+                <div class="cur__weather__info__cntnr">
+                  <div id="cur-feel" class="cur__weather__info txt--3">
+                    Feel: 43℉
+                  </div>
+                  <div class="cur__conditions__cntnr">
+                    <img
+                      src="./images/10d@2x.png"
+                      id="weather-icon"
+                      alt="weather conditions"
+                      height="50px"
+                    />
+                    <p id="cur-conditions" class="txt--3">Cloudy</p>
+                  </div>
+                  <!-- end cur__conditions__cntnr -->
+                </div>
+                <!-- end cur__weather__info__cntnr -->
+              </div>
+              <!-- end cur__weather -->
+            </section>
+            <!-- end cur__weather__cntnr -->
+
+            <section class="cur__details__cntnr">
+              <div class="cur__details__title__cntnr">
+                <h3 class="txt--2">Details</h3>
+              </div>
+              <div class="cur__details__info__cntnr">
+                <div class="cur__details__row">
+                  <div id="cur-hi" class="txt--3">Hi: 70℉</div>
+                  <div id="cur-lo" class="txt--3">Lo: 20℉</div>
+                </div>
+                <div class="cur__details__row">
+                  <div id="cur-pop" class="txt--3">Precip: 23%</div>
+                  <div id="cur-humid" class="txt--3">Wind: E 18 mph</div>
+                </div>
+                <div class="cur__details__row">
+                  <div class="cur__details__sun__container">
+                    <img
+                      src="./images/sunrise.png"
+                      alt="Sunrise"
+                      class="cur__details__sun__img"
+                    />
+                    <div id="cur-sunrise" class="txt--3">5:00 AM</div>
+                  </div>
+                  <div class="cur__details__sun__container">
+                    <img
+                      src="./images/moon.png"
+                      alt="Sunset"
+                      class="cur__details__sun__img"
+                    />
+                    <div id="cur-sunset" class="txt--3">8:00 PM</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- end cur-details__cntnr -->
+          </div>
+          <!-- end section-home -->
+
+          <div id="page-hourly" class="page"></div>
+          <!-- end section-hourly -->
+
+          <div id="page-daily" class="page"></div>
+          <!-- end section-daily -->
         </div>
         <!-- end slider -->
       </div>
-      <!-- end main__container -->
+      <!-- end main__cntnr -->
     </main>
-    <footer></footer>
+
+    <footer>
+      <div class="nav__cntnr">
+        <img src="./images/home.png" id="nav-home" class="btn nav__btn" />
+        <img src="./images/clock.png" id="nav-hourly" class="btn nav__btn" />
+        <img src="./images/calendar.png" id="nav-daily" class="btn nav__btn" />
+      </div>
+    </footer>
     <!-- <footer>
       <button type="button" id="test-btn">Local</button>
       <button type="button" id="test-btn2">Display</button>
