@@ -1,0 +1,89 @@
+/* 
+
+Default font: 'Epilogue', sans-serif;
+Heading Font: 'Marcellus', serif;
+
+*/
+
+/* 
+  TABLE OF CONTENTS
+  #Fonts
+  #Format
+  #Action States
+*/
+
+/* ###################### #FONTS ########################### */
+* {
+  font-family: "Epilogue", sans-serif;
+}
+
+/* ###################### #FORMAT ########################### */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  height: 10vh;
+}
+
+main {
+  height: 80vh;
+}
+
+footer {
+  height: 10vh;
+}
+
+/* ###################### #SECTIONS ########################### */
+.main__container {
+  scroll-snap-type: x mandatory;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.main__container::-webkit-scrollbar {
+  display: none;
+}
+
+.slider {
+  height: 100%;
+  width: 300vw;
+  display: flex;
+}
+
+.section {
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: center;
+}
+
+#section-local {
+  background-color: rgba(255, 0, 0, 0.271);
+}
+
+#section-hourly {
+  background-color: rgba(0, 0, 255, 0.145);
+}
+
+#section-daily {
+  background-color: rgba(255, 255, 0, 0.253);
+}
+
+/* ###################### #ACTION STATES ########################### */
+.hidden--opacity {
+  opacity: 0;
+}
+
+.hidden--z {
+  z-index: -5;
+}
+
+.hidden--none {
+  display: none;
+}

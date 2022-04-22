@@ -5,28 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@200;400&family=Marcellus&display=swap"
+      rel="stylesheet"
+    />
+
     <link href="./css/reset.css" rel="stylesheet" />
     <link href="./css/styles.css" rel="stylesheet" />
 
     <script src="./main.js" defer></script>
-
     <title>Weather or Not</title>
   </head>
 
   <body>
     <header></header>
     <main>
-      <div class="loading__container"></div>
+      <div class="loading__container hidden--opacity hidden--z hidden--none">
+        <h1 class="loading__msg">Getting your local data...</h1>
+        <img src="./images/loading-spinner.gif" class="loading__spinner" />
+      </div>
       <!-- end loading__container -->
-      <div class="main__container"></div>
+
+      <div class="main__container">
+        <div class="slider">
+          <section id="section-local" class="section"></section>
+          <section id="section-hourly" class="section"></section>
+          <section id="section-daily" class="section"></section>
+        </div>
+        <!-- end slider -->
+      </div>
       <!-- end main__container -->
     </main>
-    <footer>
+    <footer></footer>
+    <!-- <footer>
       <button type="button" id="test-btn">Local</button>
       <button type="button" id="test-btn2">Display</button>
       <button type="button" id="convert-btn">Convert</button>
       <input type="text" id="test-txt" />
       <button type="button" id="test-txt-btn">Search</button>
-    </footer>
+    </footer> -->
   </body>
 </html>
