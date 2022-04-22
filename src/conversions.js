@@ -60,13 +60,6 @@ const stateConversion = {
   wyoming: "wy"
 };
 
-// const convertCountry = async function () {
-//   console.log(search);
-// };
-
-// const check = new Intl.DisplayNames(["en"], { type: "region" });
-// console.log(check.of("US"));
-
 const convertDir = function (dir) {
   let output;
   if ((dir >= 337.5 && dir <= 360) || (dir >= 0 && dir < 22.5)) output = "N";

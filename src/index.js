@@ -8,19 +8,18 @@ const convertBtn = document.querySelector("#convert-btn");
 const testText = document.querySelector("#test-txt");
 const testTextBtn = document.querySelector("#test-txt-btn");
 // ################### APP FLOW #######################
-
-testBtn.addEventListener("click", async () => {
-  activeData = await collateData(null);
-});
-testbtn2.addEventListener("click", () => {
-  console.log(activeData);
-});
-convertBtn.addEventListener("click", () => {
-  convertData(activeData);
-});
-
 let activeData;
 
-testTextBtn.addEventListener("click", async () => {
-  activeData = await collateData(testText.value);
-});
+// testBtn.addEventListener("click", async () => {
+//   activeData = await collateData(null);
+// });
+// testbtn2.addEventListener("click", () => {
+//   console.log(activeData);
+// });
+// convertBtn.addEventListener("click", () => {
+//   convertData(activeData);
+// });
+
+// testTextBtn.addEventListener("click", async () => {
+//   activeData = await collateData(testText.value);
+// });

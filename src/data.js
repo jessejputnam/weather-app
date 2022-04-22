@@ -122,7 +122,7 @@ const getLocationData = async function (coords) {
     );
 
     const [dataLocation] = await resLocation.json();
-    console.log(dataLocation);
+
     return dataLocation;
   } catch (err) {
     console.error(err);
@@ -162,11 +162,12 @@ const fillForecastedArr = async function (instance, units, type) {
   const thisIcon = await getIcon(instance);
   const arr = [];
 
+  arr.push(convertUTC(instance.dt, "month"));
   arr.push(convertUTC(instance.dt, "weekday"));
-  arr.push(convertUTC(instance.dt, "time"));
-  arr.push(instance.weather[0].main);
+  arr.push(convertUTC(instance.dt, "day"));
   arr.push(thisIcon);
   if (type !== "daily") {
+    arr.push(convertUTC(instance.dt, "time"));
     arr.push([instance.temp, units === "imperial" ? "℉" : "℃"]);
     arr.push([instance.feels_like, units === "imperial" ? "℉" : "℃"]);
   }
