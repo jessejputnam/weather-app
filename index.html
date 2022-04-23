@@ -58,12 +58,13 @@
 
             <section class="cur__weather__cntnr">
               <div class="cur__weather">
-                <div class="cur__weather__temp txt--1">40℉</div>
+                <div class="cur__weather__temp txt--1">40°F</div>
                 <div class="cur__weather__info__cntnr">
-                  <div id="cur-feel" class="cur__weather__info txt--3">
-                    Feel: 43℉
+                  <div class="cur__weather__row">
+                    <div class="margin-right txt--3">Feel:</div>
+                    <div id="cur-feel" class="txt--3">43°F</div>
                   </div>
-                  <div class="cur__conditions__cntnr">
+                  <div class="cur__weather__row">
                     <img
                       src="./images/10d@2x.png"
                       id="weather-icon"
@@ -86,32 +87,42 @@
               </div>
               <div class="cur__details__info__cntnr">
                 <div class="cur__details__row">
-                  <div id="cur-hi" class="txt--3">Hi: 70℉</div>
-                  <div id="cur-lo" class="txt--3">Lo: 20℉</div>
+                  <div id="cur-hi" class="txt--3">Hi: 70°F</div>
+                  <div id="cur-lo" class="txt--3">Lo: 20°F</div>
                 </div>
+                <!-- end cur__details__row -->
+
                 <div class="cur__details__row">
                   <div id="cur-pop" class="txt--3">Precip: 23%</div>
                   <div id="cur-humid" class="txt--3">Wind: E 18 mph</div>
                 </div>
+                <!-- end cur__details__row -->
+
                 <div class="cur__details__row">
-                  <div class="cur__details__sun__container">
+                  <div class="cur__details__sun__cntnr">
                     <img
                       src="./images/sunrise.png"
                       alt="Sunrise"
                       class="cur__details__sun__img"
+                      height="20px"
+                      width="22px"
                     />
                     <div id="cur-sunrise" class="txt--3">5:00 AM</div>
                   </div>
-                  <div class="cur__details__sun__container">
+                  <div class="cur__details__sun__cntnr">
                     <img
                       src="./images/moon.png"
                       alt="Sunset"
                       class="cur__details__sun__img"
+                      height="18px"
+                      width="16px"
                     />
                     <div id="cur-sunset" class="txt--3">8:00 PM</div>
                   </div>
                 </div>
+                <!-- end cur__details__row -->
               </div>
+              <!-- end cur__details__info__cntnr -->
             </section>
             <!-- end cur-details__cntnr -->
           </div>
@@ -130,9 +141,15 @@
 
     <footer>
       <div class="nav__cntnr">
-        <img src="./images/home.png" id="nav-home" class="btn nav__btn" />
-        <img src="./images/clock.png" id="nav-hourly" class="btn nav__btn" />
-        <img src="./images/calendar.png" id="nav-daily" class="btn nav__btn" />
+        <button id="nav-home" class="btn nav__btn">
+          <img src="./images/home.png" height="55px" />
+        </button>
+        <button id="nav-hourly" class="btn nav__btn">
+          <img src="./images/clock.png" height="55px" />
+        </button>
+        <button id="nav-daily" class="btn nav__btn">
+          <img src="./images/calendar.png" height="55px" />
+        </button>
       </div>
     </footer>
     <!-- <footer>
