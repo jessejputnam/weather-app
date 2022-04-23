@@ -10,6 +10,13 @@ const testTextBtn = document.querySelector("#test-txt-btn");
 // ################### APP FLOW #######################
 let activeData;
 
+const curTemp = document.querySelector("#cur-temp");
+const navHome = document.getElementById("nav-home");
+
+curTemp.addEventListener("click", () => {
+  console.log(navHome);
+});
+
 // testBtn.addEventListener("click", async () => {
 //   activeData = await collateData(null);
 // });

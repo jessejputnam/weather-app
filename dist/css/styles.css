@@ -31,11 +31,14 @@ txt--3(Alegreya): heading small, current weather
 
 .txt--1 {
   font-family: "Marcellus", Georgia, "Times New Roman", Times, serif;
-  font-size: 60px;
+  font-size: 75px;
+  text-shadow: 1px 1px 1px white;
 }
 
 .txt--2 {
   font-family: "Marcellus", Georgia, "Times New Roman", Times, serif;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 1px white;
 }
 
 .txt--3 {
@@ -55,22 +58,54 @@ body {
 
 header {
   height: 10vh;
-  border-bottom: solid 1px black;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+  background-color: #758591;
+  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.511);
+  z-index: 2;
 }
 
 main {
-  height: 78.7vh;
+  height: 80vh;
 }
 
 footer {
-  height: 9vh;
+  height: 10vh;
+  background-color: #637f96b2;
+  box-shadow: 0px -3px 5px 1px rgba(0, 0, 0, 0.411);
+}
+
+section {
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.493),
+    rgba(255, 255, 255, 0.078)
+  );
+  border-radius: 10px;
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.474);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: (3px);
+  max-width: 800px;
+  margin: 10px;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+hr {
+  width: 100px;
 }
 
 /* ###################### #HEADER ########################### */
+.header__wrapper {
+  margin: 0 auto;
+  height: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
 .search__cntnr {
   position: relative;
 }
@@ -80,16 +115,17 @@ footer {
   padding: 3px 32px 1px 5px;
   height: 40px;
   border-radius: 5px;
+  background-color: rgb(236, 236, 236);
 }
 
 #search-submit {
-  background: white;
+  background-color: rgb(236, 236, 236);
   line-height: 35px;
   border: none;
   height: 35px;
   position: absolute;
-  right: 2px;
-  top: 3px;
+  right: 3px;
+  top: 2.5px;
   cursor: pointer;
 }
 
@@ -101,6 +137,7 @@ footer {
   align-items: center;
   border: solid 2px black;
   border-radius: 5px;
+  background-color: rgb(195, 195, 195);
 }
 
 .convert__opt {
@@ -143,22 +180,21 @@ footer {
   width: 100%;
   height: 100%;
   scroll-snap-align: center;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+  width: 95%;
 }
 
 /* ------------------ #Current -------------------- */
-#page-home {
-  background-color: rgba(255, 255, 255, 0.233);
-}
-
-.cur__heading {
-  display: flex;
-  justify-content: space-between;
-}
-
 .cur__heading__loc__cntnr {
   text-align: right;
 }
@@ -166,6 +202,7 @@ footer {
 .cur__weather__cntnr {
   margin: 0 auto;
   text-align: center;
+  padding: 0 20px;
 }
 
 .cur__weather__row {
@@ -186,7 +223,6 @@ footer {
   text-align: center;
   margin: 0 auto;
   padding: 20px;
-  border: solid 1px black;
 }
 
 .cur__details__title__cntnr {
@@ -195,7 +231,8 @@ footer {
 
 .cur__details__title__cntnr > h3 {
   border-bottom: solid 1px black;
-  line-height: 18px;
+  line-height: 25px;
+  padding-bottom: 5px;
 }
 
 .cur__details__row {
@@ -212,19 +249,40 @@ footer {
   margin-right: 10px;
 }
 
-#page-hourly {
-  background-color: rgba(255, 255, 255, 0.145);
+#cur-sunrise {
+  margin-right: 8px;
 }
 
-#page-daily {
-  background-color: rgba(255, 255, 255, 0.253);
+/* ------------------ #Hourly -------------------- */
+.hrly__heading {
+  padding: 5px 0;
+  width: 100%;
+  flex-direction: column;
+  text-align: center;
+}
+
+.hrly__forecast__cntnr {
+  width: 100%;
+  padding: 10px 20px 10px 10px;
+}
+
+.hrly__forecast__weekday {
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.hrly__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 20px;
 }
 
 /* ###################### #FOOTER ########################### */
 .nav__cntnr {
   display: flex;
   justify-content: space-between;
-  border-top: solid 1px black;
+  height: 100%;
 }
 
 .nav__btn {
@@ -235,6 +293,7 @@ footer {
   align-items: center;
   padding: 10px;
   border: none;
+  background-color: inherit;
 }
 
 /* ###################### #ACTION STATES ########################### */
@@ -248,4 +307,44 @@ footer {
 
 .hidden--none {
   display: none;
+}
+
+.convert--active {
+  background-color: #41759fb2;
+  transition: background-color 0.6s;
+}
+
+.nav--active {
+  background-color: #4081b7b2;
+  transition: background-color 0.6s;
+  border-radius: 5px;
+}
+
+/* ###################### #MEDIA QUERY ########################### */
+@media only screen and (max-width: 849px) {
+  .header__nav {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 850px) {
+  .header__wrapper {
+    column-gap: 20px;
+  }
+
+  .header__nav {
+    flex-grow: 2;
+  }
+
+  main {
+    height: 90vh;
+  }
+
+  .cur__details__cntnr {
+    margin-bottom: 50px;
+  }
+
+  footer {
+    display: none;
+  }
 }

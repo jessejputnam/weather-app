@@ -23,14 +23,28 @@
 
   <body>
     <header>
-      <form class="search__cntnr">
-        <input type="text" id="search-input" />
-        <input type="submit" value="🔍" id="search-submit" class="btn" />
-      </form>
+      <div class="header__wrapper">
+        <form class="search__cntnr">
+          <input type="text" id="search-input" />
+          <input type="submit" value="🔍" id="search-submit" class="btn" />
+        </form>
 
-      <div class="btn convert__container">
-        <div id="convert--f" class="convert__opt">℉</div>
-        <div id="convert--c" class="convert__opt">℃</div>
+        <div class="nav__cntnr header__nav">
+          <button id="nav-home" class="btn nav__btn nav-home nav--active">
+            <img src="./images/home.png" />
+          </button>
+          <button id="nav-hourly" class="btn nav__btn">
+            <img src="./images/clock.png" />
+          </button>
+          <button id="nav-daily" class="btn nav__btn">
+            <img src="./images/calendar.png" />
+          </button>
+        </div>
+
+        <div class="convert__container">
+          <div id="convert--f" class="btn convert__opt convert--active">℉</div>
+          <div id="convert--c" class="btn convert__opt">℃</div>
+        </div>
       </div>
     </header>
 
@@ -44,7 +58,7 @@
       <div class="main__cntnr">
         <div class="slider">
           <div id="page-home" class="page">
-            <section class="cur__heading">
+            <section class="heading">
               <div class="cur__heading__date__cntnr">
                 <p class="cur__heading__date--weekday txt--2">Fri</p>
                 <p class="cur__heading__date--day txt--3">Apr 22</p>
@@ -58,7 +72,7 @@
 
             <section class="cur__weather__cntnr">
               <div class="cur__weather">
-                <div class="cur__weather__temp txt--1">40°F</div>
+                <div id="cur-temp" class="cur__weather__temp txt--1">40°F</div>
                 <div class="cur__weather__info__cntnr">
                   <div class="cur__weather__row">
                     <div class="margin-right txt--3">Feel:</div>
@@ -100,6 +114,7 @@
 
                 <div class="cur__details__row">
                   <div class="cur__details__sun__cntnr">
+                    <div id="cur-sunrise" class="txt--3">5:00 AM</div>
                     <img
                       src="./images/sunrise.png"
                       alt="Sunrise"
@@ -107,7 +122,6 @@
                       height="20px"
                       width="22px"
                     />
-                    <div id="cur-sunrise" class="txt--3">5:00 AM</div>
                   </div>
                   <div class="cur__details__sun__cntnr">
                     <img
@@ -128,7 +142,229 @@
           </div>
           <!-- end section-home -->
 
-          <div id="page-hourly" class="page"></div>
+          <div id="page-hourly" class="page">
+            <section class="heading hrly__heading">
+              <h2 class="txt--2">Hourly Forecast</h2>
+              <p class="txt--3">Alford</p>
+            </section>
+
+            <section class="hrly__forecast__cntnr">
+              <h3 class="hrly__forecast__weekday txt--2">Friday</h3>
+              <hr />
+              <div class="hrly__row txt--3">
+                <div>8:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+              <div class="hrly__row txt--3">
+                <div>9:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+              <div class="hrly__row txt--3">
+                <div>8:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+              <div class="hrly__row txt--3">
+                <div>9:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+              <div class="hrly__row txt--3">
+                <div>8:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+              <div class="hrly__row txt--3">
+                <div>9:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+              <h3 class="hrly__forecast__weekday txt--2">Saturday</h3>
+              <hr />
+              <div class="hrly__row txt--3">
+                <div>8:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+              <div class="hrly__row txt--3">
+                <div>9:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+              <div class="hrly__row txt--3">
+                <div>8:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+              <div class="hrly__row txt--3">
+                <div>9:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+              <div class="hrly__row txt--3">
+                <div>8:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+              <div class="hrly__row txt--3">
+                <div>9:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+              <div class="hrly__row txt--3">
+                <div>8:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+              <div class="hrly__row txt--3">
+                <div>9:00 AM</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  height="40px"
+                />
+                <div>40°F</div>
+                <div>(45°F)</div>
+                <div>
+                  <img />
+                  <p>0%</p>
+                </div>
+              </div>
+              <!-- end hrly__row -->
+            </section>
+          </div>
           <!-- end section-hourly -->
 
           <div id="page-daily" class="page"></div>
@@ -141,7 +377,7 @@
 
     <footer>
       <div class="nav__cntnr">
-        <button id="nav-home" class="btn nav__btn">
+        <button id="nav-home" class="btn nav__btn nav--active">
           <img src="./images/home.png" height="55px" />
         </button>
         <button id="nav-hourly" class="btn nav__btn">
