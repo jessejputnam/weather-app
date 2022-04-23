@@ -19,13 +19,31 @@ txt--3(Alegreya): heading small, current weather
   #Format
   #Header
   #Pages
-  # #Current
+  # ##Current
+  #Footer
   #Action States
 */
 
 /* ###################### #FONTS ########################### */
 * {
   font-family: "Epilogue", sans-serif;
+}
+
+.txt--1 {
+  font-family: "Marcellus", Georgia, "Times New Roman", Times, serif;
+  font-size: 60px;
+}
+
+.txt--2 {
+  font-family: "Marcellus", Georgia, "Times New Roman", Times, serif;
+}
+
+.txt--3 {
+  font-family: "Alegreya Sans SC", Arial, Helvetica, sans-serif;
+}
+
+.margin-right {
+  margin-right: 10px;
 }
 
 /* ###################### #FORMAT ########################### */
@@ -45,11 +63,11 @@ header {
 }
 
 main {
-  height: 80vh;
+  height: 78.7vh;
 }
 
 footer {
-  height: 10vh;
+  height: 9vh;
 }
 
 /* ###################### #HEADER ########################### */
@@ -103,6 +121,9 @@ footer {
   width: 100%;
   height: 100%;
   overflow-x: auto;
+  background: url("../images/bkgrd-clear.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -128,6 +149,11 @@ footer {
   justify-content: space-between;
 }
 
+/* ------------------ #Current -------------------- */
+#page-home {
+  background-color: rgba(255, 255, 255, 0.233);
+}
+
 .cur__heading {
   display: flex;
   justify-content: space-between;
@@ -142,22 +168,73 @@ footer {
   text-align: center;
 }
 
-.cur__conditions__cntnr {
+.cur__weather__row {
   display: flex;
+  width: 100%;
+  justify-content: center;
   align-items: center;
 }
 
-/* ------------------ #Current -------------------- */
-#page-home {
-  background-color: white;
+#weather-icon {
+  margin-left: -10px;
+}
+
+.cur__details__cntnr {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 auto;
+  padding: 20px;
+  border: solid 1px black;
+}
+
+.cur__details__title__cntnr {
+  margin-bottom: 20px;
+}
+
+.cur__details__title__cntnr > h3 {
+  border-bottom: solid 1px black;
+  line-height: 18px;
+}
+
+.cur__details__row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.cur__details__sun__cntnr {
+  display: flex;
+}
+
+.cur__details__sun__cntnr > img {
+  margin-right: 10px;
 }
 
 #page-hourly {
-  background-color: rgba(0, 0, 255, 0.145);
+  background-color: rgba(255, 255, 255, 0.145);
 }
 
 #page-daily {
-  background-color: rgba(255, 255, 0, 0.253);
+  background-color: rgba(255, 255, 255, 0.253);
+}
+
+/* ###################### #FOOTER ########################### */
+.nav__cntnr {
+  display: flex;
+  justify-content: space-between;
+  border-top: solid 1px black;
+}
+
+.nav__btn {
+  width: 33.33%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: none;
 }
 
 /* ###################### #ACTION STATES ########################### */

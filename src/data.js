@@ -168,12 +168,12 @@ const fillForecastedArr = async function (instance, units, type) {
   arr.push(thisIcon);
   if (type !== "daily") {
     arr.push(convertUTC(instance.dt, "time"));
-    arr.push([instance.temp, units === "imperial" ? "℉" : "℃"]);
-    arr.push([instance.feels_like, units === "imperial" ? "℉" : "℃"]);
+    arr.push([instance.temp, units === "imperial" ? "°F" : "°C"]);
+    arr.push([instance.feels_like, units === "imperial" ? "°F" : "°C"]);
   }
   if (type !== "hourly") {
-    arr.push([instance.temp.max, units === "imperial" ? "℉" : "℃"]);
-    arr.push([instance.temp.min, units === "imperial" ? "℉" : "℃"]);
+    arr.push([instance.temp.max, units === "imperial" ? "°F" : "°C"]);
+    arr.push([instance.temp.min, units === "imperial" ? "°F" : "°C"]);
   }
   arr.push(`${(instance.pop * 100).toFixed(0)}%`);
 
@@ -219,8 +219,8 @@ const collateData = async function (input) {
         current: {
           sunrise: convertUTC(dataWeather.current.sunrise, "time"),
           sunset: convertUTC(dataWeather.current.sunset, "time"),
-          temp: [dataWeather.current.temp, "℉"],
-          feel: [dataWeather.current.feels_like, "℉"],
+          temp: [dataWeather.current.temp, "°F"],
+          feel: [dataWeather.current.feels_like, "°F"],
           humidity: `${dataWeather.current.humidity}%`,
           windSpd: [dataWeather.current.wind_speed, "mph"],
           windDir: convertDir(dataWeather.current.wind_deg),
@@ -262,7 +262,7 @@ const collateData = async function (input) {
 const changeTemp = function (temp, data) {
   return [
     convertTempUnits(temp[0], data.units),
-    `${data.units === "metric" ? "℃" : "℉"}`
+    `${data.units === "metric" ? "℃" : "°F"}`
   ];
 };
 
