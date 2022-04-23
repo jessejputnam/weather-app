@@ -278,6 +278,17 @@ hr {
   margin-left: 20px;
 }
 
+.hrly__forecast__pop__cntnr {
+  display: flex;
+}
+
+.material-symbols-outlined {
+  font-size: 18px;
+  line-height: 20px;
+  color: blue;
+  text-shadow: 1px 1px 2px rgba(6, 0, 93, 0.697);
+}
+
 /* ###################### #FOOTER ########################### */
 .nav__cntnr {
   display: flex;
