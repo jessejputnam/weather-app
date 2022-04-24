@@ -19,6 +19,9 @@ import {
  * ** CONVERSION FUNCTIONS
  */
 
+const loadingScreen = document.querySelector(".loading__cntnr");
+const mainScreen = document.querySelector(".main__cntnr");
+
 // ###########################################################
 // ** LOCATION FUNCTIONS
 // ###########################################################
@@ -247,6 +250,12 @@ const collateData = async function (input) {
       );
     }
 
+    loadingScreen.classList.add("hidden--opacity");
+    mainScreen.classList.remove("hidden--opacity");
+    setTimeout(() => {
+      loadingScreen.classList.add("hidden--z");
+      loadingScreen.classList.add("hidden--none");
+    });
     console.log("complete");
     return data;
   } catch (err) {
@@ -308,4 +317,9 @@ const convertData = async function (activeData) {
   activeData = data;
 };
 
-export { collateData, convertData, getCoordsSearch };
+const setLocalWeather = async function (activeData) {
+  activeData = await collateData(null);
+  console.log(activeData);
+};
+
+export { collateData, convertData, getCoordsSearch, setLocalWeather };

@@ -34,7 +34,7 @@
         </form>
 
         <div class="nav__cntnr header__nav">
-          <button id="nav-home" class="btn nav__btn nav-home nav--active">
+          <button class="btn nav__btn nav-home nav--active">
             <img src="./images/home.png" />
           </button>
           <button id="nav-hourly" class="btn nav__btn">
@@ -53,13 +53,15 @@
     </header>
 
     <main>
-      <div class="loading__cntnr hidden--opacity hidden--z hidden--none">
-        <p class="loading__msg">Getting your local data...</p>
-        <img src="./images/loading-spinner.gif" class="loading__spinner" />
+      <div class="loading__cntnr">
+        <p class="loading__msg txt--2">Getting your local data...</p>
+        <div class="spinner__cntnr">
+          <img src="./images/loading-spinner.gif" class="loading__spinner" />
+        </div>
       </div>
       <!-- end loading__cntnr -->
 
-      <div class="main__cntnr">
+      <div class="main__cntnr hidden--opacity">
         <div class="slider">
           <div id="page-home" class="page">
             <section class="heading">
@@ -147,15 +149,16 @@
           <!-- end section-home -->
 
           <div id="page-hourly" class="page">
-            <section class="heading hrly__heading">
+            <section class="heading forecast__heading">
               <h2 class="txt--2">Hourly Forecast</h2>
-              <p class="txt--3">Alford</p>
+              <p class="city-name txt--3">Alford</p>
             </section>
 
-            <section class="hrly__forecast__cntnr">
-              <h3 class="hrly__forecast__weekday txt--2">Friday</h3>
+            <section class="forecast__cntnr">
+              <h3 class="forecast__subheading txt--2">Friday</h3>
               <hr />
-              <div class="hrly__row txt--3">
+
+              <div class="forecast__row txt--3">
                 <div>8:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -164,13 +167,13 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
-              <div class="hrly__row txt--3">
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
                 <div>9:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -179,13 +182,13 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
-              <div class="hrly__row txt--3">
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
                 <div>8:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -194,13 +197,13 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
-              <div class="hrly__row txt--3">
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
                 <div>9:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -209,13 +212,13 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
-              <div class="hrly__row txt--3">
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
                 <div>8:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -224,13 +227,13 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
-              <div class="hrly__row txt--3">
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
                 <div>9:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -239,15 +242,15 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
-              <h3 class="hrly__forecast__weekday txt--2">Saturday</h3>
+              <!-- end forecast__row -->
+              <h3 class="forecast__subheading txt--2">Saturday</h3>
               <hr />
-              <div class="hrly__row txt--3">
+              <div class="forecast__row txt--3">
                 <div>8:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -256,13 +259,13 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
-              <div class="hrly__row txt--3">
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
                 <div>9:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -271,13 +274,13 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
-              <div class="hrly__row txt--3">
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
                 <div>8:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -286,13 +289,13 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
-              <div class="hrly__row txt--3">
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
                 <div>9:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -301,13 +304,13 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
-              <div class="hrly__row txt--3">
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
                 <div>8:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -316,13 +319,13 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
-              <div class="hrly__row txt--3">
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
                 <div>9:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -331,13 +334,13 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
-              <div class="hrly__row txt--3">
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
                 <div>8:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -346,13 +349,13 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
-              <div class="hrly__row txt--3">
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
                 <div>9:00 AM</div>
                 <img
                   src="./images/10d@2x.png"
@@ -361,17 +364,253 @@
                 />
                 <div>40°F</div>
                 <div>(45°F)</div>
-                <div class="hrly__forecast__pop__cntnr">
+                <div class="forecast__data__cntnr">
                   <div class="material-symbols-outlined">water_drop</div>
                   <p>0%</p>
                 </div>
               </div>
-              <!-- end hrly__row -->
+              <!-- end forecast__row -->
             </section>
           </div>
           <!-- end section-hourly -->
 
-          <div id="page-daily" class="page"></div>
+          <div id="page-daily" class="page">
+            <section class="heading forecast__heading">
+              <h2 class="txt--2">Daily Forecast</h2>
+              <p class="city-name txt--3">Alford</p>
+            </section>
+
+            <section class="forecast__cntnr">
+              <h3 class="forecast__subheading txt--2">April</h3>
+              <hr />
+
+              <div class="forecast__row txt--3">
+                <div class="forecast__day">Fri 22</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  class="forecast-condition"
+                  height="40px"
+                />
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-up.png"
+                    alt="Arrow up"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="hi-temp">45°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-down.png"
+                    alt="Arrow down"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="lo-temp">21°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <div class="material-symbols-outlined">water_drop</div>
+                  <p class="precip-chance">0%</p>
+                </div>
+              </div>
+              <!-- end forecast__row -->
+
+              <div class="forecast__row txt--3">
+                <div class="forecast__day">Fri 22</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  class="forecast-condition"
+                  height="40px"
+                />
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-up.png"
+                    alt="Arrow up"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="hi-temp">45°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-down.png"
+                    alt="Arrow down"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="lo-temp">21°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <div class="material-symbols-outlined">water_drop</div>
+                  <p class="precip-chance">0%</p>
+                </div>
+              </div>
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
+                <div class="forecast__day">Fri 22</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  class="forecast-condition"
+                  height="40px"
+                />
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-up.png"
+                    alt="Arrow up"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="hi-temp">45°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-down.png"
+                    alt="Arrow down"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="lo-temp">21°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <div class="material-symbols-outlined">water_drop</div>
+                  <p class="precip-chance">0%</p>
+                </div>
+              </div>
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
+                <div class="forecast__day">Fri 22</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  class="forecast-condition"
+                  height="40px"
+                />
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-up.png"
+                    alt="Arrow up"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="hi-temp">45°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-down.png"
+                    alt="Arrow down"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="lo-temp">21°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <div class="material-symbols-outlined">water_drop</div>
+                  <p class="precip-chance">0%</p>
+                </div>
+              </div>
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
+                <div class="forecast__day">Fri 22</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  class="forecast-condition"
+                  height="40px"
+                />
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-up.png"
+                    alt="Arrow up"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="hi-temp">45°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-down.png"
+                    alt="Arrow down"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="lo-temp">21°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <div class="material-symbols-outlined">water_drop</div>
+                  <p class="precip-chance">0%</p>
+                </div>
+              </div>
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
+                <div class="forecast__day">Fri 22</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  class="forecast-condition"
+                  height="40px"
+                />
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-up.png"
+                    alt="Arrow up"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="hi-temp">45°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-down.png"
+                    alt="Arrow down"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="lo-temp">21°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <div class="material-symbols-outlined">water_drop</div>
+                  <p class="precip-chance">0%</p>
+                </div>
+              </div>
+              <!-- end forecast__row -->
+              <div class="forecast__row txt--3">
+                <div class="forecast__day">Fri 22</div>
+                <img
+                  src="./images/10d@2x.png"
+                  alt="weather conditions"
+                  class="forecast-condition"
+                  height="40px"
+                />
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-up.png"
+                    alt="Arrow up"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="hi-temp">45°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <img
+                    src="./images/arrow-down.png"
+                    alt="Arrow down"
+                    height="14px"
+                    class="arrow__img"
+                  />
+                  <div class="lo-temp">21°F</div>
+                </div>
+                <div class="forecast__data__cntnr">
+                  <div class="material-symbols-outlined">water_drop</div>
+                  <p class="precip-chance">0%</p>
+                </div>
+              </div>
+              <!-- end forecast__row -->
+            </section>
+          </div>
           <!-- end section-daily -->
         </div>
         <!-- end slider -->
@@ -381,7 +620,7 @@
 
     <footer>
       <div class="nav__cntnr">
-        <button id="nav-home" class="btn nav__btn nav--active">
+        <button class="nav-home btn nav__btn nav--active">
           <img src="./images/home.png" height="55px" />
         </button>
         <button id="nav-hourly" class="btn nav__btn">
