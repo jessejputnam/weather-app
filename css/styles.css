@@ -81,7 +81,7 @@ section {
   background-image: linear-gradient(
     to bottom right,
     rgba(255, 255, 255, 0.493),
-    rgba(255, 255, 255, 0.078)
+    rgba(33, 169, 248, 0.324)
   );
   border-radius: 10px;
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.474);
@@ -109,10 +109,12 @@ hr {
   align-items: center;
   position: absolute;
   z-index: 20;
-  background-color: rgba(47, 94, 160, 0.499);
+  padding-top: 150px;
+  background-color: rgba(155, 162, 172, 0.499);
 }
 
 .spinner__cntnr {
+  margin-top: -120px;
   height: 500px;
   width: 600px;
 }
@@ -176,11 +178,10 @@ hr {
 
 /* ###################### #PAGES ########################### */
 .main__cntnr {
-  scroll-snap-type: x mandatory;
+  /* scroll-snap-type: x mandatory; */
   width: 100%;
   height: 100%;
-  overflow-x: auto;
-  background-image: url("../images/bkgrd-clear.jpg");
+  overflow-x: hidden;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -198,6 +199,8 @@ hr {
   height: 100%;
   width: 300vw;
   display: flex;
+
+  transition: transform 0.5s ease-in-out;
 }
 
 .page {
@@ -357,7 +360,7 @@ hr {
 }
 
 .convert--active {
-  background-color: #41759fb2;
+  background-color: #3b90d6b2;
   transition: background-color 0.6s;
 }
 
@@ -365,6 +368,54 @@ hr {
   background-color: #4081b7b2;
   transition: background-color 0.6s;
   border-radius: 5px;
+}
+
+.bkgrd-clear {
+  background-image: url("../../dist/images/bkgrd-clear.jpg");
+}
+
+.bkgrd-clouds-few {
+  background-image: url("../../dist/images/bkgrd-clouds-few.jpg");
+}
+
+.bkgrd-clouds-scattered {
+  background-image: url("../../dist/images/bkgrd-clouds-scattered.jpg");
+}
+
+.bkgrd-clouds-overcast {
+  background-image: url("../../dist/images/bkgrd-clouds-overcast.jpg");
+}
+
+.bkgrd-drizzle {
+  background-image: url("../../dist/images/bkgrd-drizzle.jpg");
+}
+
+.bkgrd-rain {
+  background-image: url("../../dist/images/bkgrd-rain.jpg");
+}
+
+.bkgrd-lightning {
+  background-image: url("../../dist/images/bkgrd-lightning.jpg");
+}
+
+.bkgrd-snow {
+  background-image: url("../../dist/images/bkgrd-snow.jpg");
+}
+
+.bkgrd-fog {
+  background-image: url("../../dist/images/bkgrd-fog.jpg");
+}
+
+.slide-home {
+  transform: translate(0);
+}
+
+.slide-hourly {
+  transform: translate(-33.3333%);
+}
+
+.slide-daily {
+  transform: translate(-66.66666%);
 }
 
 /* ###################### #MEDIA QUERY ########################### */
