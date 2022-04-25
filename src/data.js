@@ -271,16 +271,16 @@ const collateData = async function (input) {
 const changeTemp = function (temp, data) {
   return [
     convertTempUnits(temp[0], data.units),
-    `${data.units === "metric" ? "℃" : "°F"}`
+    `${data.units === "metric" ? "°C" : "°F"}`
   ];
 };
 
 // const changeSpd = function
 
 // Convert data
-const convertData = async function (activeData) {
+const convertData = function (activeData) {
   // Copy data to manipulate
-  const data = await activeData;
+  const data = activeData;
 
   // Change unit measurement
   data.units = data.units === "metric" ? "imperial" : "metric";
@@ -307,19 +307,18 @@ const convertData = async function (activeData) {
 
   // Change hourly temps
   data.weather.hourly.forEach((instance) => {
-    const tempReal = instance[4];
-    const tempFeel = instance[5];
-    instance[4] = changeTemp(tempReal, data);
-    instance[5] = changeTemp(tempFeel, data);
+    const tempReal = instance[5];
+    const tempFeel = instance[6];
+    instance[5] = changeTemp(tempReal, data);
+    instance[6] = changeTemp(tempFeel, data);
   });
 
   // Replace unconverted data
-  activeData = data;
+  return data;
 };
 
-const setLocalWeather = async function (activeData) {
-  activeData = await collateData(null);
-  console.log(activeData);
+const setLocalWeather = async function () {
+  return await collateData(null);
 };
 
 export { collateData, convertData, getCoordsSearch, setLocalWeather };

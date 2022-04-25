@@ -1,53 +1,81 @@
 "use strict";
 
-import { collateData, convertData } from "./data";
-import { updateUI } from "./visual";
+import { collateData, convertData, setLocalWeather } from "./data";
+import { updateUI, resetSlider, clearActiveNav } from "./visual";
 
-// const testBtn = document.querySelector("#test-btn");
-// const testbtn2 = document.querySelector("#test-btn2");
-// const convertBtn = document.querySelector("#convert-btn");
 // const testText = document.querySelector("#test-txt");
 // const testTextBtn = document.querySelector("#test-txt-btn");
 
 // -----------------
+const convertContainer = document.querySelector(".convert__container");
+const convertOptions = document.querySelectorAll(".convert__opt");
 
-// const loadingScreen = document.querySelector(".loading__cntnr");
-// const mainScreen = document.querySelector(".main__cntnr");
-const background = document.querySelector(".main__cntnr");
+const mainContainer = document.querySelector(".main__cntnr");
+const slider = document.querySelector(".slider");
+const navHomes = document.querySelectorAll(".nav-home");
+const navHourlies = document.querySelectorAll(".nav-hourly");
+const navDailies = document.querySelectorAll(".nav-daily");
 
 // #################################################
 // * APP FLOW
 // #################################################
-let activeData = collateData(null);
+// Load Local Weather Data
+let activeData = setLocalWeather();
 
+// Display Local Weather Data
 (async function () {
   const data = await activeData;
   updateUI(data);
 })();
 
-const navHomes = document.querySelectorAll(".nav-home");
-// const
+// Convert Weather Data Button
+convertContainer.addEventListener("click", async (e) => {
+  const clicked = e.target.closest(".convert__opt");
+  if (!clicked) return;
 
-//////////////////////////////
-//////////////////////////////
+  const data = await activeData;
 
+  convertOptions.forEach((option) => {
+    option.classList.toggle("convert--active");
+  });
+
+  convertData(data);
+  updateUI(data);
+});
+
+// Move Slides
 navHomes.forEach((home) => {
-  home.addEventListener("click", async () => {
-    console.log(await activeData);
-    background.style.backgroundImage =
-      "url('../../dist/images/bkgrd-rain.jpg')";
+  home.addEventListener("click", () => {
+    resetSlider();
+    clearActiveNav();
+
+    slider.classList.add("slide-home");
+    navHomes.forEach((home) => home.classList.add("nav--active"));
+    mainContainer.scrollTo({ top: 0, behavior: "smooth" });
   });
 });
 
-// testBtn.addEventListener("click", async () => {
-//   activeData = await collateData(null);
-// });
-// testbtn2.addEventListener("click", () => {
-//   console.log(activeData);
-// });
-// convertBtn.addEventListener("click", () => {
-//   convertData(activeData);
-// });
+navHourlies.forEach((hourly) => {
+  hourly.addEventListener("click", () => {
+    resetSlider();
+    clearActiveNav();
+
+    slider.classList.add("slide-hourly");
+    navHourlies.forEach((hourly) => hourly.classList.add("nav--active"));
+    mainContainer.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+
+navDailies.forEach((daily) => {
+  daily.addEventListener("click", () => {
+    resetSlider();
+    clearActiveNav();
+
+    slider.classList.add("slide-daily");
+    navDailies.forEach((daily) => daily.classList.add("nav--active"));
+    mainContainer.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
 
 // testTextBtn.addEventListener("click", async () => {
 //   activeData = await collateData(testText.value);

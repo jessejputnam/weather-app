@@ -27,6 +27,11 @@ const hourlyDay = document.querySelector("#hourly-day");
 const dailyForecastCntnr = document.querySelector("#daily-forecast");
 const dailyMonth = document.querySelector("#daily-month");
 
+const slider = document.querySelector(".slider");
+const navHomes = document.querySelectorAll(".nav-home");
+const navHourlies = document.querySelectorAll(".nav-hourly");
+const navDailies = document.querySelectorAll(".nav-daily");
+
 // #################################################
 // * Update Pages
 // #################################################
@@ -53,9 +58,9 @@ const updateCurrentPage = function (data) {
     data.weather.daily[0][5][1]
   }`;
   curPop.textContent = data.weather.daily[0][6];
-  curWind.textContent = `Wind: ${
-    data.weather.current.windDir
-  } ${data.weather.current.windSpd.join(" ")}`;
+  curWind.textContent = `Wind: ${data.weather.current.windDir} ${
+    data.weather.current.windSpd[0].toFixed() + data.weather.current.windSpd[1]
+  }`;
   curSunrise.textContent = data.weather.current.sunrise;
   curSunset.textContent = data.weather.current.sunset;
 };
@@ -64,6 +69,10 @@ const updateHourlyPage = function (data) {
   cityNames.forEach((cityName) => (cityName.textContent = data.location.city));
 
   hourlyDay.textContent = data.location.weekday;
+
+  while (hourlyForecastCntnr.children.length > 2) {
+    hourlyForecastCntnr.removeChild(hourlyForecastCntnr.lastChild);
+  }
 
   data.weather.hourly.forEach((hour) => {
     if (hour[4] === "12:00 AM") {
@@ -100,6 +109,10 @@ const updateHourlyPage = function (data) {
 
 const updateDailyPage = function (data) {
   dailyMonth.textContent = data.location.month;
+
+  while (dailyForecastCntnr.children.length > 2) {
+    dailyForecastCntnr.removeChild(dailyForecastCntnr.lastChild);
+  }
 
   data.weather.daily.forEach((day) => {
     if (day[2] === "01") {
@@ -151,19 +164,63 @@ const updateDailyPage = function (data) {
   });
 };
 
-const updateUI = function (data) {
-  // switch (data.current.weather.conditionDesc) {
-  //   case "clear sky":
-  //     background.style.backgroundImg = "url('../../dist/images/bkgrd-clear.jpg')";
-  //     break;
-  //   case ""
-  //   default:
-  // }
-  // background.style.backgroundImage = "url('../../dist/images/bkgrd-rain.jpg')";
+const updateBackground = function (data) {
+  background.className = "main__cntnr";
 
+  switch (data.weather.current.conditionIcon.slice(33, 36)) {
+    case "01d":
+      background.classList.add("bkgrd-clear");
+      break;
+    case "02d":
+      background.classList.add("bkgrd-clouds-few");
+      break;
+    case "03d":
+      background.classList.add("bkgrd-clouds-scattered");
+      break;
+    case "04d":
+      background.classList.add("bkgrd-clouds-overcast");
+      break;
+    case "09d":
+      background.classList.add("bkgrd-drizzle");
+      break;
+    case "10d":
+      background.classList.add("bkgrd-rain");
+      break;
+    case "11d":
+      background.classList.add("bkgrd-lightning");
+      break;
+    case "13d":
+      background.classList.add("bkgrd-snow");
+      break;
+    case "50d":
+      background.classList.add("bkgrd-fog");
+      break;
+    default:
+      background.style.backgroundImage = `linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.493),
+      rgba(33, 169, 248, 0.324)
+    )`;
+  }
+};
+
+const updateUI = function (data) {
+  updateBackground(data);
   updateCurrentPage(data);
   updateHourlyPage(data);
   updateDailyPage(data);
 };
 
-export { updateUI };
+const clearActiveNav = function () {
+  navHomes.forEach((home) => home.classList.remove("nav--active"));
+  navHourlies.forEach((hourly) => hourly.classList.remove("nav--active"));
+  navDailies.forEach((daily) => daily.classList.remove("nav--active"));
+};
+
+const resetSlider = function () {
+  slider.classList.remove("slide-home");
+  slider.classList.remove("slide-hourly");
+  slider.classList.remove("slide-daily");
+};
+
+export { updateUI, clearActiveNav, resetSlider };
