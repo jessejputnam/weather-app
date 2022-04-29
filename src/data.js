@@ -161,7 +161,7 @@ const getIcon = async function (day) {
   try {
     const iconID = convertIconID(day.weather[0].id);
     const response = await fetch(
-      `http://openweathermap.org/img/wn/${iconID}@2x.png`
+      `https://openweathermap.org/img/wn/${iconID}@2x.png`
     );
     return response.url;
   } catch (err) {
