@@ -397,18 +397,18 @@ hr {
 }
 
 .bkgrd-clear {
-  background-image: url("./images/bkgrd-clear.jpg");
+  background-image: url("../../images/bkgrd-clear.jpg");
 }
 
 .bkgrd-clouds-few {
-  background-image: url("./images/bkgrd-clouds-few.jpg");
+  background-image: url("../images/bkgrd-clouds-few.jpg");
 }
 
 .bkgrd-clouds-scattered {
   background-image: url("./images/bkgrd-clouds-scattered.jpg");
 }
 .bkgrd-clouds-overcast {
-  background-image: url("./images/bkgrd-clouds-overcast.jpg");
+  background-image: url("../../../images/bkgrd-clouds-overcast.jpg");
 }
 
 .bkgrd-drizzle {
