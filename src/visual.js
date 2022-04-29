@@ -183,6 +183,8 @@ const updateBackground = function (data) {
   try {
     background.className = "main__cntnr";
 
+    console.log(data.weather.current.conditionIcon.slice(34, 37));
+
     switch (data.weather.current.conditionIcon.slice(34, 37)) {
       case "01d":
         background.classList.add("bkgrd-clear");
