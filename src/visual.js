@@ -37,170 +37,189 @@ const navDailies = document.querySelectorAll(".nav-daily");
 // #################################################
 
 const updateCurrentPage = function (data) {
-  curWeekday.textContent = data.location.weekday;
-  curDate.textContent = `${data.location.month} ${data.location.day}`;
-  curCity.textContent = data.location.city;
-  curState.textContent = data.location.state;
+  try {
+    curWeekday.textContent = data.location.weekday;
+    curDate.textContent = `${data.location.month} ${data.location.day}`;
+    curCity.textContent = data.location.city;
+    curState.textContent = data.location.state;
 
-  curTemp.textContent = `${data.weather.current.temp[0].toFixed(0)} ${
-    data.weather.current.temp[1]
-  }`;
-  curFeel.textContent = `${data.weather.current.feel[0].toFixed(0)} ${
-    data.weather.current.feel[1]
-  }`;
-  curConditionsIcon.src = data.weather.current.conditionIcon;
-  curConditions.textContent = data.weather.current.conditionDesc;
+    curTemp.textContent = `${data.weather.current.temp[0].toFixed(0)} ${
+      data.weather.current.temp[1]
+    }`;
+    curFeel.textContent = `${data.weather.current.feel[0].toFixed(0)} ${
+      data.weather.current.feel[1]
+    }`;
+    curConditionsIcon.src = data.weather.current.conditionIcon;
+    curConditions.textContent = data.weather.current.conditionDesc;
 
-  curHi.textContent = `Hi: ${data.weather.daily[0][4][0].toFixed(0)} ${
-    data.weather.daily[0][4][1]
-  }`;
-  curLo.textContent = `Lo: ${data.weather.daily[0][5][0].toFixed(0)} ${
-    data.weather.daily[0][5][1]
-  }`;
-  curPop.textContent = data.weather.daily[0][6];
-  curWind.textContent = `Wind: ${data.weather.current.windDir} ${
-    data.weather.current.windSpd[0].toFixed() + data.weather.current.windSpd[1]
-  }`;
-  curSunrise.textContent = data.weather.current.sunrise;
-  curSunset.textContent = data.weather.current.sunset;
+    curHi.textContent = `Hi: ${data.weather.daily[0][4][0].toFixed(0)} ${
+      data.weather.daily[0][4][1]
+    }`;
+    curLo.textContent = `Lo: ${data.weather.daily[0][5][0].toFixed(0)} ${
+      data.weather.daily[0][5][1]
+    }`;
+    curPop.textContent = data.weather.daily[0][6];
+    curWind.textContent = `Wind: ${data.weather.current.windDir} ${
+      data.weather.current.windSpd[0].toFixed() +
+      data.weather.current.windSpd[1]
+    }`;
+    curSunrise.textContent = data.weather.current.sunrise;
+    curSunset.textContent = data.weather.current.sunset;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const updateHourlyPage = function (data) {
-  cityNames.forEach((cityName) => (cityName.textContent = data.location.city));
+  try {
+    cityNames.forEach(
+      (cityName) => (cityName.textContent = data.location.city)
+    );
 
-  hourlyDay.textContent = data.location.weekday;
+    hourlyDay.textContent = data.location.weekday;
 
-  while (hourlyForecastCntnr.children.length > 2) {
-    hourlyForecastCntnr.removeChild(hourlyForecastCntnr.lastChild);
-  }
+    while (hourlyForecastCntnr.children.length > 2) {
+      hourlyForecastCntnr.removeChild(hourlyForecastCntnr.lastChild);
+    }
 
-  data.weather.hourly.forEach((hour) => {
-    if (hour[4] === "12:00 AM") {
+    data.weather.hourly.forEach((hour) => {
+      if (hour[4] === "12:00 AM") {
+        hourlyForecastCntnr.insertAdjacentHTML(
+          "beforeend",
+          `
+            <h3 class="forecast__subheading txt--2">${hour[1]}</h3>
+            <hr />
+          `
+        );
+      }
+
       hourlyForecastCntnr.insertAdjacentHTML(
         "beforeend",
         `
-          <h3 class="forecast__subheading txt--2">${hour[1]}</h3>
-          <hr />
-        `
-      );
-    }
-
-    hourlyForecastCntnr.insertAdjacentHTML(
-      "beforeend",
-      `
-      <div class="forecast__row txt--3">
-        <div>${hour[4]}</div>
-        <img
-          src="${hour[3]}"
-          alt="weather conditions"
-          height="40px"
-        />
-        <div class="temp">${hour[5][0].toFixed() + hour[5][1]}</div>
-        <div class="temp">(${hour[6][0].toFixed() + hour[6][1]})</div>
-        <div class="forecast__data__cntnr">
-          <div class="material-symbols-outlined">water_drop</div>
-          <p>${hour[7]}</p>
+        <div class="forecast__row txt--3">
+          <div>${hour[4]}<span class="timezone__txt"> (EST)</span></div>
+          <img
+            src="${hour[3]}"
+            alt="weather conditions"
+            height="40px"
+          />
+          <div class="temp">${hour[5][0].toFixed() + hour[5][1]}</div>
+          <div class="temp">(${hour[6][0].toFixed() + hour[6][1]})</div>
+          <div class="forecast__data__cntnr">
+            <div class="material-symbols-outlined">water_drop</div>
+            <p>${hour[7]}</p>
+          </div>
         </div>
-      </div>
-    `
-    );
-  });
+      `
+      );
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const updateDailyPage = function (data) {
-  dailyMonth.textContent = data.location.month;
+  try {
+    dailyMonth.textContent = data.location.month;
 
-  while (dailyForecastCntnr.children.length > 2) {
-    dailyForecastCntnr.removeChild(dailyForecastCntnr.lastChild);
-  }
+    while (dailyForecastCntnr.children.length > 2) {
+      dailyForecastCntnr.removeChild(dailyForecastCntnr.lastChild);
+    }
 
-  data.weather.daily.forEach((day) => {
-    if (day[2] === "01") {
+    data.weather.daily.forEach((day) => {
+      if (day[2] === "01") {
+        dailyForecastCntnr.insertAdjacentHTML(
+          "beforeend",
+          `
+              <h3 class="forecast__subheading txt--2">${day[0]}</h3>
+              <hr />
+          `
+        );
+      }
+
       dailyForecastCntnr.insertAdjacentHTML(
         "beforeend",
         `
-            <h3 class="forecast__subheading txt--2">${day[0]}</h3>
-            <hr />
+          <div class="forecast__row txt--3">
+            <div class="forecast__day">${day[1] + " " + day[2]}</div>
+            <img
+              src="${day[3]}"
+              alt="weather conditions"
+              class="forecast-condition"
+              height="40px"
+            />
+            <div class="forecast__data__cntnr">
+              <img
+                src="./images/arrow-up.png"
+                alt="Arrow up"
+                height="14px"
+                class="arrow__img"
+              />
+              <div class="temp">${day[4][0].toFixed() + day[4][1]}</div>
+            </div>
+            <div class="forecast__data__cntnr">
+              <img
+                src="./images/arrow-down.png"
+                alt="Arrow down"
+                height="14px"
+                class="arrow__img"
+              />
+              <div class="temp">${day[5][0].toFixed() + day[5][1]}</div>
+            </div>
+            <div class="forecast__data__cntnr">
+              <div class="material-symbols-outlined">water_drop</div>
+              <p>${day[6]}</p>
+            </div>
+          </div>
         `
       );
-    }
-
-    dailyForecastCntnr.insertAdjacentHTML(
-      "beforeend",
-      `
-        <div class="forecast__row txt--3">
-          <div class="forecast__day">${day[1] + " " + day[2]}</div>
-          <img
-            src="${day[3]}"
-            alt="weather conditions"
-            class="forecast-condition"
-            height="40px"
-          />
-          <div class="forecast__data__cntnr">
-            <img
-              src="./images/arrow-up.png"
-              alt="Arrow up"
-              height="14px"
-              class="arrow__img"
-            />
-            <div class="temp">${day[4][0].toFixed() + day[4][1]}</div>
-          </div>
-          <div class="forecast__data__cntnr">
-            <img
-              src="./images/arrow-down.png"
-              alt="Arrow down"
-              height="14px"
-              class="arrow__img"
-            />
-            <div class="temp">${day[5][0].toFixed() + day[5][1]}</div>
-          </div>
-          <div class="forecast__data__cntnr">
-            <div class="material-symbols-outlined">water_drop</div>
-            <p>${day[6]}</p>
-          </div>
-        </div>
-      `
-    );
-  });
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const updateBackground = function (data) {
-  background.className = "main__cntnr";
+  try {
+    background.className = "main__cntnr";
 
-  switch (data.weather.current.conditionIcon.slice(33, 36)) {
-    case "01d":
-      background.classList.add("bkgrd-clear");
-      break;
-    case "02d":
-      background.classList.add("bkgrd-clouds-few");
-      break;
-    case "03d":
-      background.classList.add("bkgrd-clouds-scattered");
-      break;
-    case "04d":
-      background.classList.add("bkgrd-clouds-overcast");
-      break;
-    case "09d":
-      background.classList.add("bkgrd-drizzle");
-      break;
-    case "10d":
-      background.classList.add("bkgrd-rain");
-      break;
-    case "11d":
-      background.classList.add("bkgrd-lightning");
-      break;
-    case "13d":
-      background.classList.add("bkgrd-snow");
-      break;
-    case "50d":
-      background.classList.add("bkgrd-fog");
-      break;
-    default:
-      background.style.backgroundImage = `linear-gradient(
-      to bottom right,
-      rgba(255, 255, 255, 0.493),
-      rgba(33, 169, 248, 0.324)
-    )`;
+    switch (data.weather.current.conditionIcon.slice(33, 36)) {
+      case "01d":
+        background.classList.add("bkgrd-clear");
+        break;
+      case "02d":
+        background.classList.add("bkgrd-clouds-few");
+        break;
+      case "03d":
+        background.classList.add("bkgrd-clouds-scattered");
+        break;
+      case "04d":
+        background.classList.add("bkgrd-clouds-overcast");
+        break;
+      case "09d":
+        background.classList.add("bkgrd-drizzle");
+        break;
+      case "10d":
+        background.classList.add("bkgrd-rain");
+        break;
+      case "11d":
+        background.classList.add("bkgrd-lightning");
+        break;
+      case "13d":
+        background.classList.add("bkgrd-snow");
+        break;
+      case "50d":
+        background.classList.add("bkgrd-fog");
+        break;
+      default:
+        background.style.backgroundImage = `linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.493),
+        rgba(33, 169, 248, 0.324)
+      )`;
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -223,4 +242,17 @@ const resetSlider = function () {
   slider.classList.remove("slide-daily");
 };
 
-export { updateUI, clearActiveNav, resetSlider };
+const showSoloLoadingScreen = function (loadingSearch) {
+  loadingSearch.classList.remove("hidden--none");
+};
+const hideSoloLoadingScreen = function (loadingSearch) {
+  loadingSearch.classList.add("hidden--none");
+};
+
+export {
+  updateUI,
+  clearActiveNav,
+  resetSlider,
+  showSoloLoadingScreen,
+  hideSoloLoadingScreen
+};

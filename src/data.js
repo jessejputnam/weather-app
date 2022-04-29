@@ -21,6 +21,7 @@ import {
 
 const loadingScreen = document.querySelector(".loading__cntnr");
 const mainScreen = document.querySelector(".main__cntnr");
+const loadingMsg = document.querySelector(".loading__msg");
 
 // ###########################################################
 // ** LOCATION FUNCTIONS
@@ -108,8 +109,15 @@ const getCoordsSearch = async function (search) {
       `http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&appid=e1c7899ad76e2db415e336ec95e711cd`
     );
     const [dataSearchLocation] = await resSearch.json();
-    if (dataSearchLocation === undefined)
+    if (dataSearchLocation === undefined) {
+      loadingMsg.textContent =
+        "Error: could not find city. Please check spelling or format.";
+      loadingScreen.classList.remove("hidden--opacity");
+      mainScreen.classList.add("hidden--opacity");
+      loadingScreen.classList.remove("hidden--z");
+      loadingScreen.classList.remove("hidden--none");
       throw new Error("Could not find city");
+    }
     const { lat: lat, lon: long } = await dataSearchLocation;
     return { lat, long };
   } catch (err) {
@@ -256,7 +264,6 @@ const collateData = async function (input) {
       loadingScreen.classList.add("hidden--z");
       loadingScreen.classList.add("hidden--none");
     });
-    console.log("complete");
     return data;
   } catch (err) {
     console.error(err);

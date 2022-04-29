@@ -28,7 +28,7 @@
   <body>
     <header>
       <div class="header__wrapper">
-        <form class="search__cntnr">
+        <form class="search__cntnr" autocomplete="off">
           <input
             type="text"
             id="search-input"
@@ -66,6 +66,9 @@
       <!-- end loading__cntnr -->
 
       <div class="main__cntnr hidden--opacity">
+        <div class="solo-spinner__cntnr hidden--none">
+          <img src="./images/loading-spinner.gif" id="solo-spinner" />
+        </div>
         <div class="slider">
           <div id="page-home" class="page">
             <section class="heading">
@@ -122,6 +125,7 @@
                 <div class="cur__details__row">
                   <div class="cur__details__sun__cntnr">
                     <div id="cur-sunrise" class="txt--3"></div>
+                    <span class="timezone__txt">(EST)</span>
                     <img
                       src="./images/sunrise.png"
                       alt="Sunrise"
@@ -139,6 +143,7 @@
                       width="16px"
                     />
                     <div id="cur-sunset" class="txt--3"></div>
+                    <span class="timezone__txt">(EST)</span>
                   </div>
                 </div>
                 <!-- end cur__details__row -->
@@ -192,12 +197,5 @@
         </button>
       </div>
     </footer>
-    <!-- <footer>
-      <button type="button" id="test-btn">Local</button>
-      <button type="button" id="test-btn2">Display</button>
-      <button type="button" id="convert-btn">Convert</button>
-      <input type="text" id="test-txt" />
-      <button type="button" id="test-txt-btn">Search</button>
-    </footer> -->
   </body>
 </html>

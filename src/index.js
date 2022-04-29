@@ -1,20 +1,27 @@
 "use strict";
 
 import { collateData, convertData, setLocalWeather } from "./data";
-import { updateUI, resetSlider, clearActiveNav } from "./visual";
+import {
+  updateUI,
+  resetSlider,
+  clearActiveNav,
+  hideSoloLoadingScreen,
+  showSoloLoadingScreen
+} from "./visual";
 
-// const testText = document.querySelector("#test-txt");
-// const testTextBtn = document.querySelector("#test-txt-btn");
-
-// -----------------
 const convertContainer = document.querySelector(".convert__container");
 const convertOptions = document.querySelectorAll(".convert__opt");
+
+const soloLoadingScreen = document.querySelector(".solo-spinner__cntnr");
 
 const mainContainer = document.querySelector(".main__cntnr");
 const slider = document.querySelector(".slider");
 const navHomes = document.querySelectorAll(".nav-home");
 const navHourlies = document.querySelectorAll(".nav-hourly");
 const navDailies = document.querySelectorAll(".nav-daily");
+
+const searchInput = document.querySelector("#search-input");
+const searchForm = document.querySelector(".search__cntnr");
 
 // #################################################
 // * APP FLOW
@@ -41,6 +48,18 @@ convertContainer.addEventListener("click", async (e) => {
 
   convertData(data);
   updateUI(data);
+});
+
+// Search City
+searchForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  searchInput.blur();
+
+  showSoloLoadingScreen(soloLoadingScreen);
+  activeData = await collateData(searchInput.value);
+  hideSoloLoadingScreen(soloLoadingScreen);
+  updateUI(activeData);
+  searchInput.value = "";
 });
 
 // Move Slides
@@ -76,7 +95,3 @@ navDailies.forEach((daily) => {
     mainContainer.scrollTo({ top: 0, behavior: "smooth" });
   });
 });
-
-// testTextBtn.addEventListener("click", async () => {
-//   activeData = await collateData(testText.value);
-// });
