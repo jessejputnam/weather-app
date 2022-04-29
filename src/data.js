@@ -106,7 +106,7 @@ const getCoordsSearch = async function (search) {
 
     // ############# GET SEARCH #############
     const resSearch = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&appid=e1c7899ad76e2db415e336ec95e711cd`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&appid=e1c7899ad76e2db415e336ec95e711cd`
     );
     const [dataSearchLocation] = await resSearch.json();
     if (dataSearchLocation === undefined) {
@@ -129,7 +129,7 @@ const getCoordsSearch = async function (search) {
 const getLocationData = async function (coords) {
   try {
     const resLocation = await fetch(
-      `http://api.openweathermap.org/geo/1.0/reverse?lat=${coords.lat}&lon=${coords.long}&appid=e1c7899ad76e2db415e336ec95e711cd`
+      `https://api.openweathermap.org/geo/1.0/reverse?lat=${coords.lat}&lon=${coords.long}&appid=e1c7899ad76e2db415e336ec95e711cd`
     );
 
     const [dataLocation] = await resLocation.json();
