@@ -57,10 +57,16 @@ txt--3(Alegreya): heading small, current weather
 }
 
 /* ###################### #FORMAT ########################### */
+html {
+  height: -webkit-fill-available;
+}
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 header {
