@@ -65,30 +65,23 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-}
-
-@supports (selector(:nth-child(1 + x))) or (-webkit-touch-callout: none) {
-  body {
-    padding-bottom: 10vh;
-  }
+  height: 100vh;
 }
 
 header {
-  height: 10vh;
+  height: 10%;
   background-color: #758591;
   box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.511);
   z-index: 2;
 }
 
 main {
-  height: 80vh;
+  height: 80%;
   position: relative;
 }
 
 footer {
-  height: 10vh;
+  height: 10%;
   background-color: #637f96b2;
   box-shadow: 0px -3px 5px 1px rgba(0, 0, 0, 0.411);
 }
