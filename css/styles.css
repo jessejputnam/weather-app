@@ -69,6 +69,12 @@ body {
   min-height: -webkit-fill-available;
 }
 
+@supports (selector(:nth-child(1 + x))) or (-webkit-touch-callout: none) {
+  body {
+    padding-bottom: 10vh;
+  }
+}
+
 header {
   height: 10vh;
   background-color: #758591;
