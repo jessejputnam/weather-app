@@ -49,7 +49,8 @@ Users should be able to:
 
 - Promises and API Calls
 - Methods to deal with similarly named information: i.e. What to do when searching for Springfield, which is a city in many states and countries. This was solved with if statements that I used to fill vacancies in the search if found. I used the common delineator of a comma to decide whether a city alone was named, or a city in conjunction with a country/state.
-```JavaScript
+
+```js
 // If only city then search, else...
     if (searchArr.length !== 1) {
       if (searchArr.length > 2)
