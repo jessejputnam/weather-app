@@ -23,10 +23,6 @@ const navDailies = document.querySelectorAll(".nav-daily");
 const searchInput = document.querySelector("#search-input");
 const searchForm = document.querySelector(".search__cntnr");
 
-if (navigator.platform === "iPhone") {
-  document.querySelector("body").style.height = "90vh";
-}
-
 // #################################################
 // * APP FLOW
 // #################################################
