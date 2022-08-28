@@ -64,7 +64,6 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100vh;
 }
 
@@ -84,6 +83,8 @@ footer {
   height: 10%;
   background-color: #637f96b2;
   box-shadow: 0px -3px 5px 1px rgba(0, 0, 0, 0.411);
+  position: fixed;
+  bottom: 0;
 }
 
 section {
@@ -210,6 +211,7 @@ hr {
   height: 100%;
   width: 300vw;
   display: flex;
+  position: relative;
 
   transition: transform 0.5s ease-in-out;
 }
@@ -217,12 +219,18 @@ hr {
 .page {
   width: 100%;
   height: 100%;
+  overflow-y: auto;
   scroll-snap-align: center;
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  scrollbar-width: none;
+}
+
+.page::-webkit-scrollbar {
+  display: none;
 }
 
 .heading {
@@ -359,6 +367,16 @@ hr {
 }
 
 /* ###################### #FOOTER ########################### */
+.desk__footer {
+  border: solid 1px black;
+  width: 100vw;
+  height: 100%;
+}
+
+.footer__nav {
+  width: 100vw;
+}
+
 .nav__cntnr {
   display: flex;
   justify-content: space-between;
@@ -453,6 +471,14 @@ hr {
   .header__nav {
     display: none;
   }
+
+  .desk__footer {
+    display: none;
+  }
+
+  .footer__nav {
+    display: flex;
+  }
 }
 
 @media only screen and (min-width: 850px) {
@@ -468,11 +494,15 @@ hr {
     height: 90vh;
   }
 
+  .main__cntnr {
+    padding-bottom: 100px;
+  }
+
   .cur__details__cntnr {
     margin-bottom: 50px;
   }
 
-  footer {
+  .footer__nav {
     display: none;
   }
 }
