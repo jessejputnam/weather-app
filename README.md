@@ -52,6 +52,7 @@ Users should be able to:
 
 ```js
 // If only city then search, else...
+<<<<<<< HEAD
 if (searchArr.length !== 1) {
   if (searchArr.length > 2)
     throw new Error("Search must be 'city, state' or 'city, country'");
@@ -90,6 +91,46 @@ if (searchArr.length !== 1) {
     }
   }
 }
+=======
+    if (searchArr.length !== 1) {
+      if (searchArr.length > 2)
+        throw new Error("Search must be 'city, state' or 'city, country'");
+      if (searchArr[1].length < 2)
+        throw new Error("Incorrect format for state/country");
+
+      // Assign country/state
+      if (searchArr[1].length === 2) {
+        // If state/country input is 2-digit code
+        if (Object.values(stateConversion).includes(searchArr[1])) {
+          // If US state
+          state = searchArr[1];
+          country = "us";
+        } else {
+          // If not US state
+          state = "";
+          country = searchArr[1];
+        }
+      } else {
+        // If state/country input is full name
+        if (Object.keys(stateConversion).includes(searchArr[1])) {
+          // If US State
+          state = searchArr[1];
+          country = "us";
+        } else {
+          // If not US state
+          if (Object.values(countryConversion).includes(searchArr[1])) {
+            const countryCode = Object.entries(countryConversion).filter(
+              (entry) => entry[1] === searchArr[1]
+            )[0][0];
+            state = "";
+            country = countryCode;
+          } else {
+            throw new Error("Could not find country");
+          }
+        }
+      }
+    }
+>>>>>>> 07380bdecb3118db1052cbcf0eb38bfc309d08a8
 ```
 
 ### Continued development
